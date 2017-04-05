@@ -13,7 +13,8 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 query: {
-                    presets: ['babel-preset-es2015', 'babel-preset-react', 'babel-preset-stage-0']
+                    presets: ['babel-preset-es2015', 'babel-preset-react', 'babel-preset-stage-0'],
+                    plugins: ["transform-decorators-legacy"]
                 }
             },
             include: [path.resolve(__dirname, 'src')]
