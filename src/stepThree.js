@@ -7,6 +7,7 @@ const style ={
   border: '2px #333 solid',
   margin: '10px'
 }
+
 @V
 @pureRender
 class Child extends React.Component {
@@ -14,11 +15,10 @@ class Child extends React.Component {
      // 裸写下面这种写法没毛用，除非你的数据都是深拷贝，公用一个引用
      // 这种做法代价非常大，会使得你的代码变化莫测，非常非常难debug和维护
      // return nextProps.payload !== this.props.payload;
-    
     /**
      *  写法一 如果组件属性很多，你就蛋疼了，而且性能难以保证。不推荐大组件使用
      *  而且每一个组件都必须要照搬着写这一坨代码
-     *  return nextProps.payload.name !== this.props.payload.name
+     *   return nextProps.payload.name !== this.props.payload.name
         || nextProps.payload.xiaosan !== this.props.payload.xiaosan;
      */
 
@@ -48,7 +48,7 @@ class ChildOfChild extends React.Component {
 }
 
 @V
-class StepTwo extends React.Component {
+class StepThree extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -70,10 +70,10 @@ class StepTwo extends React.Component {
   changeXiaosan() {
       /**
        *   对应SCU的写法一
-       *    const payload = this.state.payload;
-            payload.xiaosan = '小伞你好'
-            this.setState({
-            payload,
+       *     const payload = { ...this.state.payload };
+                payload.xiaosan = '小伞你好'
+                this.setState({
+                    payload,
             });
        */
     // 对应SCU的写法二
@@ -93,4 +93,4 @@ class StepTwo extends React.Component {
   }
 }
 
-module.exports = StepTwo;
+module.exports = StepThree;
