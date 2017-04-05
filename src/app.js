@@ -1,56 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import V from 'react-render-visualizer-decorator';
+import StepOne from './stepOne';
+import StepTwo from './stepTwo';
 
-const style ={
-  border: '2px #333 solid',
-  margin: '10px'
-}
-@V
-class Child extends React.Component {
-  render() {
-    return <div style={style}>
-      这里是第一层子节点
-      child-{this.props.name}
-      {this.props.xiaosan}
-      <ChildOfChild name="狗" />
-      </div>;
-  }
-}
-@V
-class ChildOfChild extends React.Component {
-  render() {
-    return <div style={style}>
-      这里是第二层子节点
-      ChildOfChild-{this.props.name}
-      </div>;
-  }
-}
-
-@V
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      xiaosan: ''
-    }
-  }
-  changeXiaosan() {
-    this.setState({
-      xiaosan: '小伞你好'
-    });
-  }
   render() {
-    return <div style={style}>
-      这里是最外层父容器
-      <button onClick={this.changeXiaosan.bind(this)}>改变”child-xiaosan“的props</button>
-      <Child name="xiaoming" />
-      <Child name="xiaohu" />
-      <Child name="xiaosan" xiaosan={this.state.xiaosan} />
-      <Child name="xiaojin" />
+    return <div>
+        先热热身吧
+        <StepOne />
+        那么，如何优化？
+        <StepTwo />
+         那么，对于复杂对象怎么比较，才能既简单又高效？
+         （有时候复杂对象比较的开销甚至超过了render时间，得不偿失）
       </div>;
   }
 }
+
 
 ReactDOM.render(
   <App />,
